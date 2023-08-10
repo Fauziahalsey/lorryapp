@@ -1,0 +1,48 @@
+body{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+background-image: url(../src/Assets/lorry.jpeg);
+background-repeat: no-repeat;
+background-size: cover;
+}
+.app-container {
+  text-align: center;
+  margin: 50px;
+}
+
+.transport-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.transport-list {
+  border: 1px solid #ccc;
+  padding: 20px;
+
+}
+
+input {
+  width: 50%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid black;
+  border-radius: 7px;
+  margin-left: 10rem;
+}
+
+.btn {
+  background-color: #16e64a;
+  color: #fff;
+  padding: 10px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+  margin-bottom: -4rem;
+  border-radius: 5px;
+  margin-left: 10rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
