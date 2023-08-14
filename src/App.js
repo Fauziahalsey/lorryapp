@@ -5,23 +5,46 @@ const LorryTransportApp = () => {
   const [lorryNumber, setLorryNumber] = useState('');
   const [destination, setDestination] = useState('');
   const [cargo, setCargo] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleAddTransport = () => {
-    if (lorryNumber && destination && cargo) {
+  const handleAddTransport = async () => {
+    if (lorryNumber && destination && cargo && phoneNumber) {
       const newTransport = {
         lorryNumber,
         destination,
         cargo,
+        phoneNumber,
       };
-      setTransports([...transports, newTransport]);
-      setLorryNumber('');
-      setDestination('');
-      setCargo('');
+
+      try {
+        await sendSMS(phoneNumber);
+        setTransports([...transports, newTransport]);
+        setLorryNumber('');
+        setDestination('');
+        setCargo('');
+        setPhoneNumber('');
+      } catch (error) {
+        console.error('Error sending SMS', error);
+      }
+    }
+  };
+
+  const sendSMS = async (phoneNumber) => {
+    const response = await fetch('/send-sms', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ phoneNumber }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to send SMS');
     }
   };
 
   return (
-    <div>
+    <div className='container'>
       <h1>Lorry Transport Application</h1>
       
       <div>
@@ -32,17 +55,12 @@ const LorryTransportApp = () => {
           value={lorryNumber}
           onChange={(e) => setLorryNumber(e.target.value)}
         />
+        {/* Other input fields */}
         <input
           type="text"
-          placeholder="Destination"
-          value={destination}
-          onChange={(e) => setDestination(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Cargo"
-          value={cargo}
-          onChange={(e) => setCargo(e.target.value)}
+          placeholder="Phone Number"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
       </div>
       <button className='btn' onClick={handleAddTransport}>Add Transport</button>
@@ -52,9 +70,7 @@ const LorryTransportApp = () => {
         <ul>
           {transports.map((transport, index) => (
             <li key={index}>
-              <strong>Lorry Number:</strong> {transport.lorryNumber}<br />
-              <strong>Destination:</strong> {transport.destination}<br />
-              <strong>Cargo:</strong> {transport.cargo}
+              {/* Display transport details */}
             </li>
           ))}
         </ul>

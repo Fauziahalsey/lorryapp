@@ -2,19 +2,33 @@ body{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-background-image: url(../src/Assets/lorry.jpeg);
+background-color: #fff;
 background-repeat: no-repeat;
 background-size: cover;
 }
 .app-container {
   text-align: center;
   margin: 50px;
+  background-color: #ccc;
+}
+.container{
+  background-color: #ccc;
+  width: 50%;
+  margin-left: 26rem;
+  height: 40rem;
 }
 
 .transport-form {
   border: 1px solid #ccc;
   padding: 20px;
   margin-bottom: 20px;
+}
+h1{
+  margin-left: 4rem;
+  margin-bottom: 4rem;
+}
+h2{
+  margin-left: 4rem;
 }
 
 .transport-list {
